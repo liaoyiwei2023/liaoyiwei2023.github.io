@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Quick tutorial of Jemdoc</title>
+<!-- MathJax -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async>
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<!-- End MathJax -->
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Home</div>
+<div class="menu-item"><a href="index.html">About&nbsp;me</a></div>
+<div class="menu-item"><a href="new.html">What's&nbsp;new</a></div>
+<div class="menu-category">Research</div>
+<div class="menu-item"><a href="topic.html">Topics</a></div>
+<div class="menu-item"><a href="public.html">Publications</a></div>
+<div class="menu-item"><a href="talk.html">Conferences</a></div>
+<div class="menu-item"><a href="software.html">Software</a></div>
+<div class="menu-category">Academics</div>
+<div class="menu-item"><a href="project.html">Projects</a></div>
+<div class="menu-item"><a href="teaching.html">Teaching</a></div>
+<div class="menu-item"><a href="awards.html">Awards</a></div>
+<div class="menu-category">Misc</div>
+<div class="menu-item"><a href="useful.html">Resources</a></div>
+<div class="menu-item"><a href="jem.html" class="current">Jemdoc</a></div>
+<div class="menu-item"><a href="gallery.html">Gallery</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Quick tutorial of Jemdoc</h1>
+</div>
+<p>These static pages are generated using <a href="https://szl2.github.io/jemdoc-new-design/www/index.html" target=&ldquo;blank&rdquo;>Jemdoc</a>, which is originally developed by <a href="https://jemnz.com" target=&ldquo;blank&rdquo;>Jacob Mattingley</a>. Source code (through Github) can be accessed <a href="https://github.com/jem/jemdoc" target=&ldquo;blank&rdquo;>here</a>. Now it also supports MathJax! See <a href="https://www.mit.edu/~wsshin/jemdoc+mathjax.html" target=&ldquo;blank&rdquo;>this page</a> or the <a href="https://github.com/wsshin/jemdoc_mathjax" target=&ldquo;blank&rdquo;>GitHub repo</a>.
+</p>
+<h2>Steps to generate a new HTML page</h2>
+<h3>regular pages</h3>
+<p>0. Say, your folder is <tt>\User\xxx\myJem</tt>
+</p>
+<p>1. Create a <tt>xxx.jemdoc</tt> file (by TextEdit or something). This should include the <a href="https://szl2.github.io/jemdoc-new-design/www/modelines.html" target=&ldquo;blank&rdquo;>modeline</a> at the beginning of the file:
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+# jemdoc: menu{MENU}{xxx.html}
+= Your section title
+</pre></div></div>
+<p>2. Use <tt>Terminal</tt> (or <tt>cmd</tt> in Windows) to generate HTML file
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+cd \User\xxx\myJem
+python2 jemdoc.py xxx
+</pre></div></div>
+<h3>Menu</h3>
+<p>Create a file named <tt>MENU</tt> WITHOUT any extension name, and put the following (say)
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+Home
+    About me           [index.html]
+    What's new		 [new.html]
+</pre></div></div>
+<p>Then use <tt>Terminal</tt> 
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+cd \User\xxx\myJem
+python2 jemdoc.py MENU
+</pre></div></div>
+<p>Remember to re-generate all other pages after you update the menu.
+</p>
+<h3>Pages with MathJax</h3>
+<p>You first need to download <a href="jemdoc3.py" target=&ldquo;blank&rdquo;>jemdoc3.py</a> and <a href="mysite.conf" target=&ldquo;blank&rdquo;>mysite.conf</a>. Steps to generate a page with equations are more or less the same, except that you need to use
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+python2 jemdoc3.py -c mysite.conf xxx
+</pre></div></div>
+<p>In this case, python 3 also works!
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+python3 jemdoc3.py -c mysite.conf xxx
+</pre></div></div>
+<p>The following is an example:
+</p>
+<div class="codeblock">
+<div class="blockcontent"><pre>
+\(
+\begin{align}
+\nabla \cdot \mathbf{D} &amp;= \rho_f\label{eq:D}\\
+\nabla \cdot \mathbf{B} &amp;= 0\label{eq:B}\\
+\nabla \times \mathbf{E} &amp;= -\frac{\partial\mathbf{B}}{\partial t}\label{eq:E}\\
+\nabla \times \mathbf{H} &amp;= \mathbf{J}_f - \frac{\partial\mathbf{D}}{\partial t}\label{eq:H}
+\end{align}
+\)
+</pre></div></div>
+<p style="text-align:center">
+\[
+\begin{align}
+\nabla \cdot \mathbf{D} &amp;= \rho_f\label{eq:D}\\
+\nabla \cdot \mathbf{B} &amp;= 0\label{eq:B}\\
+\nabla \times \mathbf{E} &amp;= -\frac{\partial\mathbf{B}}{\partial t}\label{eq:E}\\
+\nabla \times \mathbf{H} &amp;= \mathbf{J}_f - \frac{\partial\mathbf{D}}{\partial t}\label{eq:H}
+\end{align}
+\]
+</p><p>For inline equations like \(Ax+b\), simply use <tt> $Ax+b$ </tt>. To reference an equation \(\eqref{eq:E}\), use <tt>$\</tt><tt>eqref{eq:E}$</tt>.
+</p>
+<h2>Cheatsheet</h2>
+<p>See <a href="https://ml.cs.tsinghua.edu.cn/~wenbo/jemdoc.html" target=&ldquo;blank&rdquo;>here</a>.
+</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-01-31 15:09:21 UTC/GMT+8.
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
